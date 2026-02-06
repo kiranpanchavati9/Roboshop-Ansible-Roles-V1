@@ -1,12 +1,9 @@
 #!/bin/bash
 
-# Simple runner for Roboshop Ansible playbooks
-# Usage: ./run.sh frontend | mongodb
-
 COMPONENT=$1
 
 if [ -z "$COMPONENT" ]; then
-  echo "Usage: ./run.sh <frontend|mongodb>"
+  echo "Usage: ./run.sh <frontend|mongodb|catalogue|user|cart|shipping>"
   exit 1
 fi
 
@@ -18,4 +15,4 @@ if [ ! -f "$PLAYBOOK" ]; then
 fi
 
 echo "🚀 Running playbook: $PLAYBOOK"
-ansible-playbook -i inventory "$PLAYBOOK"
+ansible-playbook -i inventory "$PLAYBOOK" --ask-pass
